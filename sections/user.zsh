@@ -15,10 +15,10 @@
 # | needed              | if needed              | if needed               |
 # --------------------------------------------------------------------------
 
-SPACESHIP_USER_SHOW="${SPACESHIP_USER_SHOW=true}"
+SPACESHIP_USER_SHOW="${SPACESHIP_USER_SHOW=always}"
 SPACESHIP_USER_PREFIX="${SPACESHIP_USER_PREFIX="with "}"
 SPACESHIP_USER_SUFFIX="${SPACESHIP_USER_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"}"
-SPACESHIP_USER_COLOR="${SPACESHIP_USER_COLOR="yellow"}"
+SPACESHIP_USER_COLOR="${SPACESHIP_USER_COLOR="cyan"}"
 SPACESHIP_USER_COLOR_ROOT="${SPACESHIP_USER_COLOR_ROOT="red"}"
 
 # ------------------------------------------------------------------------------
@@ -44,7 +44,7 @@ spaceship_user() {
     spaceship::section \
       "$user_color" \
       "$SPACESHIP_USER_PREFIX" \
-      '%n' \
+      '\ue711 %n' \
       "$SPACESHIP_USER_SUFFIX"
   fi
 }

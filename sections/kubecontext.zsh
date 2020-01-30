@@ -10,8 +10,12 @@
 # ------------------------------------------------------------------------------
 
 SPACESHIP_KUBECONTEXT_SHOW="${SPACESHIP_KUBECONTEXT_SHOW=true}"
-SPACESHIP_KUBECONTEXT_PREFIX="${SPACESHIP_KUBECONTEXT_PREFIX=""}"
+SPACESHIP_KUBECONTEXT_PREFIX="${SPACESHIP_KUBECONTEXT_PREFIX="at "}"
 SPACESHIP_KUBECONTEXT_SUFFIX="${SPACESHIP_KUBECONTEXT_SUFFIX="$SPACESHIP_PROMPT_DEFAULT_SUFFIX"}"
+# Additional space is added because ☸️ is much bigger than the other symbols
+# See: https://github.com/denysdovhan/spaceship-prompt/pull/432
+#SPACESHIP_KUBECONTEXT_SYMBOL="${SPACESHIP_KUBECONTEXT_SYMBOL="☸️  "}"
+SPACESHIP_KUBECONTEXT_SYMBOL="${SPACESHIP_KUBECONTEXT_SYMBOL="\ufd31 "}"
 SPACESHIP_KUBECONTEXT_COLOR="${SPACESHIP_KUBECONTEXT_COLOR="cyan"}"
 SPACESHIP_KUBECONTEXT_NAMESPACE_SHOW="${SPACESHIP_KUBECONTEXT_NAMESPACE_SHOW=true}"
 SPACESHIP_KUBECONTEXT_COLOR_GROUPS=(${SPACESHIP_KUBECONTEXT_COLOR_GROUPS=})
@@ -21,7 +25,7 @@ SPACESHIP_KUBECONTEXT_COLOR_GROUPS=(${SPACESHIP_KUBECONTEXT_COLOR_GROUPS=})
 # ------------------------------------------------------------------------------
 
 # Show current context in kubectl
-spaceship_kubectl_context() {
+spaceship_kubecontext() {
   [[ $SPACESHIP_KUBECONTEXT_SHOW == false ]] && return
 
   spaceship::exists kubectl || return
@@ -54,6 +58,6 @@ spaceship_kubectl_context() {
   spaceship::section \
     "$section_color" \
     "$SPACESHIP_KUBECONTEXT_PREFIX" \
-    "${kube_context}" \
+    "${SPACESHIP_KUBECONTEXT_SYMBOL}${kube_context}" \
     "$SPACESHIP_KUBECONTEXT_SUFFIX"
 }
